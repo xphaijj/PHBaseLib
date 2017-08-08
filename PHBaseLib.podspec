@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PHBaseLib'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = '自定义基础类库'
 
   s.description      = <<-DESC
@@ -25,5 +25,6 @@ Pod::Spec.new do |s|
   s.dependency 'MJExtension'
   s.dependency 'FMDB'
   s.dependency 'SVProgressHUD'
+  s.dependency 'Masonry'
 
 end
