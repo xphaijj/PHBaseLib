@@ -9,7 +9,7 @@
 #ifndef PHBlockMarco_h
 #define PHBlockMarco_h
 #import <UIKit/UIKit.h>
-
+#import <Masonry/Masonry.h>
 
 /**
  VC dismiss 的Block
@@ -77,7 +77,12 @@ typedef void(^PHSearchBlock)(UISearchBar *searchBar);
  */
 typedef void(^PHValueBlock)(id value);
 
-
+/**
+ 约束block
+ 
+ @param make 添加约束的block
+ */
+typedef void(^PHLayout)(MASConstraintMaker *make);
 
 
 
