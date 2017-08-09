@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PHBaseLib'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = '自定义基础类库'
 
   s.description      = <<-DESC
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.author           = { 'eMail' => '2112787533@qq.com' }
   s.source           = { :git => 'https://github.com/xphaijj/PHBaseLib.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '8.0'
   s.source_files =  'PHBaseLib/Classes/**/*.{h,m}'
   s.public_header_files = 'PHBaseLib/Classes/**/*.h'
 
