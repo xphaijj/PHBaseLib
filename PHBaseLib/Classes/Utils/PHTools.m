@@ -19,6 +19,7 @@
 PH_ShareInstance(PHTools);
 
 - (void)ph_init {
+    self.requestExtra = [[NSMutableDictionary alloc] init];
 }
 
 #pragma mark -- 判断设备是否是iPad
@@ -301,41 +302,6 @@ UIViewController *PH_TopViewController(UIViewController *controller)
     return controller;
 }
 
-#pragma mark -- 网络请求的基本参数
-NSDictionary *PH_BaseParams(NSDictionary *sender) {
-    NSMutableDictionary *baseParams = [[NSMutableDictionary alloc] initWithDictionary:PH_SecretKeyAndRandCode(sender[@"action"])];
-    if ([PHTools shareInstance].requestExtra) {
-        [baseParams addEntriesFromDictionary:[PHTools shareInstance].requestExtra];
-    }
-    [baseParams setObject:PH_AppVersion forKey:@"version"];
-    [baseParams setObject:PH_BundleIdentifier forKey:@"bundleID"];
-    [baseParams setObject:PH_BuildVersion forKey:@"version"];
-    [baseParams setObject:API_SOURCE forKey:@"appType"];
-    [baseParams setObject:sender[@"action"] forKey:@"interface"];
-    return baseParams;
-}
-
-#pragma mark -- 网络请求的上传处理
-NSDictionary *PH_UploadParams(NSDictionary *sender) {
-    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:sender];
-
-//    if ([ShareManager shareInstance].userInfo) {
-//        [result setObj:[ShareManager shareInstance].userInfo.token forKey:@"token"];   
-//    }
-    
-    return result;
-}
-
-/**
- 处理网络请求下来的字典
- 
- @param sender 字典数据
- @return 处理过后的字典
- */
-NSDictionary *PH_HandleResponse(NSDictionary *sender) {
-    return sender;
-}
-
 /**
  生成校验字符串
  
@@ -479,8 +445,60 @@ CGFloat PH_CellHeightForAutoLayout(UITableViewCell *cell, id info) {
 }
 
 
-+ (void)localConfig:(NSString *)configName {
-    PHLog(@"正常加载");
+
+#pragma mark -- 网络请求的基本参数
+NSDictionary *PH_BaseParams(NSDictionary *sender) {
+    return [PHTools PH_BaseParams:sender];
+}
+
+#pragma mark -- 网络请求的上传处理
+NSDictionary *PH_UploadParams(NSDictionary *sender) {
+    return [PHTools PH_UploadParams:sender];
+}
+
+/**
+ 处理网络请求下来的字典
+ 
+ @param sender 字典数据
+ @return 处理过后的字典
+ */
+NSDictionary *PH_HandleResponse(NSDictionary *sender) {
+    return [PHTools PH_HandleResponse:sender];
+}
+
+/**
+ 网络请求的基本参数
+ 
+ @param sender 请求之前的参数
+ @return 添加基本参数以后的
+ */
++ (NSDictionary *)PH_BaseParams:(NSDictionary *)sender {
+    NSMutableDictionary *baseParams = [[NSMutableDictionary alloc] initWithDictionary:PH_SecretKeyAndRandCode(sender[@"action"])];
+    if ([PHTools shareInstance].requestExtra.allKeys.count != 0) {
+        [baseParams addEntriesFromDictionary:[PHTools shareInstance].requestExtra];
+    }
+    [baseParams setObject:PH_AppVersion forKey:@"version"];
+    [baseParams setObject:PH_BundleIdentifier forKey:@"bundleID"];
+    [baseParams setObject:PH_BuildVersion forKey:@"version"];
+    [baseParams setObject:API_SOURCE forKey:@"appType"];
+    [baseParams setObject:sender[@"action"] forKey:@"interface"];
+    return baseParams;
+}
+
+/**
+ 网络请求的上传处理
+ 
+ @param sender 处理前的字典
+ @return 处理后的字典
+ */
++ (NSDictionary *)PH_UploadParams:(NSDictionary *)sender {
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:sender];
+    
+    return result;
+}
+
++ (NSDictionary *)PH_HandleResponse:(NSDictionary *)sender {
+    return sender;
 }
 
 @end
