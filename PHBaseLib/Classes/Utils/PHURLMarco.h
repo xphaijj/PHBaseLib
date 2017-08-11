@@ -9,8 +9,8 @@
 #ifndef PHURLMarco_h
 #define PHURLMarco_h
 
-#define HOST_NAME @""
-#define BASE_URL @""
+#define HOST_NAME [PHKeyConfig shareInstance].hostName
+#define BASE_URL [PHKeyConfig shareInstance].baseUrl
 
 #define API_SOURCE @""
 #define API_KEY @""

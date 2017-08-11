@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   PHConfig.plist
-   PHBaseLib
-
-   Created by 項普華 on 2017/8/6.
-   Copyright (c) 2017年 xphaijj0305@126.com. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-    
-    </dict>
+<dict>
+	<key>host_name</key>
+	<string>hostname</string>
+	<key>base_url</key>
+	<string>basrurl</string>
+	<key>request_extras</key>
+	<dict>
+		<key>source</key>
+		<string>iOS</string>
+	</dict>
+	<key>baidu_map_key</key>
+	<string>baidukey</string>
+	<key>jpush_key</key>
+	<string>jpushkey</string>
+	<key>jpush_secret</key>
+	<string></string>
+</dict>
 </plist>

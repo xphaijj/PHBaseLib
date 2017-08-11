@@ -202,15 +202,8 @@ CGFloat PH_CellHeightForAutoLayout(UITableViewCell *cell, id info);
 
 PH_ShareInstanceHeader(PHTools);
 
-/**
- 网络请求的额外参数
- */
-@property (nonatomic, strong) NSMutableDictionary *requestExtra;
-
-#pragma mark -- 网络请求的基本参数
 NSDictionary *PH_BaseParams(NSDictionary *sender);
 
-#pragma mark -- 网络请求的上传处理
 NSDictionary *PH_UploadParams(NSDictionary *sender);
 
 /**
@@ -243,6 +236,13 @@ NSDictionary *PH_HandleResponse(NSDictionary *sender);
  @return 处理过后的字典
  */
 + (NSDictionary *)PH_HandleResponse:(NSDictionary *)sender;
+
+/**
+ 载入配置文件
+
+ @param configName 配置文件的名称
+ */
++ (void)PH_SystemConfig:(NSString *)configName;
 
 
 @end

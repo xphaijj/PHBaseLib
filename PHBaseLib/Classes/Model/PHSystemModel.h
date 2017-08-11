@@ -35,17 +35,38 @@
 
 @interface PHKeyConfig : PHModel {
 }
+
+PH_ShareInstanceHeader(PHKeyConfig);
+/**
+ 外界传入的数据 集合
+ */
+@property (readwrite, nonatomic, strong) NSDictionary *systemConfig;
+
+/**
+ 上传服务器数据的扩展
+ */
+@property (readwrite, nonatomic, strong) NSMutableDictionary *request_extras;
+
 /**
  百度地图
  */
-@property (readwrite, nonatomic, strong) NSString * baiduMapKey;
+@property (readwrite, nonatomic, strong) NSString *baidu_map_key;
 /**
  极光推送
  */
-@property (readwrite, nonatomic, strong) NSString * jPushKey;
+@property (readwrite, nonatomic, strong) NSString *jpush_key;
 /**
  极光推送
  */
-@property (readwrite, nonatomic, strong) NSString * jPushSecret;
+@property (readwrite, nonatomic, strong) NSString *jpush_secret;
+/**
+ 主机域名
+ */
+@property (readwrite, nonatomic, strong) NSString *host_name;
+/**
+ 基础路径
+ */
+@property (readwrite, nonatomic, strong) NSString *base_url;
+
 
 @end

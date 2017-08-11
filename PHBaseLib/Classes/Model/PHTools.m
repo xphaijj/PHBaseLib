@@ -12,14 +12,15 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PHMacro.h"
 #import <objc/message.h>
+#import "NSDictionary+Safe.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "PHSystemModel.h"
 
 @implementation PHTools
 
 PH_ShareInstance(PHTools);
 
 - (void)ph_init {
-    self.requestExtra = [[NSMutableDictionary alloc] init];
 }
 
 #pragma mark -- 判断设备是否是iPad
@@ -303,19 +304,6 @@ UIViewController *PH_TopViewController(UIViewController *controller)
 }
 
 /**
- 生成校验字符串
- 
- @param action 接口
- @return 处理过后的字典
- */
-NSDictionary *PH_SecretKeyAndRandCode(NSString *action) {
-    NSString *randCode = PH_Randomstr();
-    NSString *secret = PH_MD5([NSString stringWithFormat:@"%@%@", API_KEY, randCode]);
-    NSDictionary *result = @{@"ckeckCode":secret, @"verCode":randCode};
-    return result;
-}
-
-/**
  *  生成随机码
  *
  *  @return <#return value description#>
@@ -473,15 +461,13 @@ NSDictionary *PH_HandleResponse(NSDictionary *sender) {
  @return 添加基本参数以后的
  */
 + (NSDictionary *)PH_BaseParams:(NSDictionary *)sender {
-    NSMutableDictionary *baseParams = [[NSMutableDictionary alloc] initWithDictionary:PH_SecretKeyAndRandCode(sender[@"action"])];
-    if ([PHTools shareInstance].requestExtra.allKeys.count != 0) {
-        [baseParams addEntriesFromDictionary:[PHTools shareInstance].requestExtra];
+    NSMutableDictionary *baseParams = [[NSMutableDictionary alloc] init];
+    if ([PHKeyConfig shareInstance].request_extras.allKeys.count != 0) {
+        [baseParams addEntriesFromDictionary:[PHKeyConfig shareInstance].request_extras];
     }
     [baseParams setObject:PH_AppVersion forKey:@"version"];
     [baseParams setObject:PH_BundleIdentifier forKey:@"bundleID"];
     [baseParams setObject:PH_BuildVersion forKey:@"version"];
-    [baseParams setObject:API_SOURCE forKey:@"appType"];
-    [baseParams setObject:sender[@"action"] forKey:@"interface"];
     return baseParams;
 }
 
@@ -500,5 +486,19 @@ NSDictionary *PH_HandleResponse(NSDictionary *sender) {
 + (NSDictionary *)PH_HandleResponse:(NSDictionary *)sender {
     return sender;
 }
+
+/**
+ 载入配置文件
+ 
+ @param configName 配置文件的名称
+ */
++ (void)PH_SystemConfig:(NSString *)configName {
+    [PHKeyConfig shareInstance].systemConfig = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForAuxiliaryExecutable:configName]];
+    
+    if (![PHKeyConfig shareInstance].systemConfig || [PHKeyConfig shareInstance].systemConfig.allKeys.count == 0) {
+        PHLogWarn(@"请配置基本参数");
+    }
+}
+
 
 @end

@@ -7,12 +7,13 @@
 //
 
 #import "PHAppDelegate.h"
+#import <PHBaseLib/PHTools.h>
 
 @implementation PHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [PHTools PH_SystemConfig:@"PHConfig.plist"];
     return YES;
 }
 
