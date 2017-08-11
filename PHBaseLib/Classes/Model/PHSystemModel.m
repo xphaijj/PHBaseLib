@@ -42,6 +42,19 @@
 
 PH_ShareInstance(PHKeyConfig);
 
+/**
+ 载入配置文件
+ 
+ @param configName 配置文件的名称
+ */
++ (void)PH_SystemConfig:(NSString *)configName {
+    [PHKeyConfig shareInstance].systemConfig = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForAuxiliaryExecutable:configName]];
+    
+    if (![PHKeyConfig shareInstance].systemConfig || [PHKeyConfig shareInstance].systemConfig.allKeys.count == 0) {
+        PHLogWarn(@"请配置基本参数");
+    }
+}
+
 - (void)ph_init {
     self.request_extras = [[NSMutableDictionary alloc] init];
 }

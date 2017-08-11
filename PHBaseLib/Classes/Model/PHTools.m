@@ -18,8 +18,6 @@
 
 @implementation PHTools
 
-PH_ShareInstance(PHTools);
-
 - (void)ph_init {
 }
 
@@ -430,74 +428,6 @@ CGFloat PH_CellHeightForAutoLayout(UITableViewCell *cell, id info) {
     
     CGFloat cellHeight = fittingHeight + 2 * 1 / [UIScreen mainScreen].scale; //必须加上上下分割线的高度
     return cellHeight;
-}
-
-
-
-#pragma mark -- 网络请求的基本参数
-NSDictionary *PH_BaseParams(NSDictionary *sender) {
-    return [PHTools PH_BaseParams:sender];
-}
-
-#pragma mark -- 网络请求的上传处理
-NSDictionary *PH_UploadParams(NSDictionary *sender) {
-    return [PHTools PH_UploadParams:sender];
-}
-
-/**
- 处理网络请求下来的字典
- 
- @param sender 字典数据
- @return 处理过后的字典
- */
-NSDictionary *PH_HandleResponse(NSDictionary *sender) {
-    return [PHTools PH_HandleResponse:sender];
-}
-
-/**
- 网络请求的基本参数
- 
- @param sender 请求之前的参数
- @return 添加基本参数以后的
- */
-+ (NSDictionary *)PH_BaseParams:(NSDictionary *)sender {
-    NSMutableDictionary *baseParams = [[NSMutableDictionary alloc] init];
-    if ([PHKeyConfig shareInstance].request_extras.allKeys.count != 0) {
-        [baseParams addEntriesFromDictionary:[PHKeyConfig shareInstance].request_extras];
-    }
-    [baseParams setObject:PH_AppVersion forKey:@"version"];
-    [baseParams setObject:PH_BundleIdentifier forKey:@"bundleID"];
-    [baseParams setObject:PH_BuildVersion forKey:@"version"];
-    return baseParams;
-}
-
-/**
- 网络请求的上传处理
- 
- @param sender 处理前的字典
- @return 处理后的字典
- */
-+ (NSDictionary *)PH_UploadParams:(NSDictionary *)sender {
-    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:sender];
-    
-    return result;
-}
-
-+ (NSDictionary *)PH_HandleResponse:(NSDictionary *)sender {
-    return sender;
-}
-
-/**
- 载入配置文件
- 
- @param configName 配置文件的名称
- */
-+ (void)PH_SystemConfig:(NSString *)configName {
-    [PHKeyConfig shareInstance].systemConfig = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForAuxiliaryExecutable:configName]];
-    
-    if (![PHKeyConfig shareInstance].systemConfig || [PHKeyConfig shareInstance].systemConfig.allKeys.count == 0) {
-        PHLogWarn(@"请配置基本参数");
-    }
 }
 
 

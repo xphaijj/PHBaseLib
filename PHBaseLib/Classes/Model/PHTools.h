@@ -147,6 +147,12 @@ void PH_ShowTips(NSString *tips);
 UIViewController *PH_CurrentVC();
 
 /**
+ *  生成随机码
+ *
+ *  @return <#return value description#>
+ */
+NSString *PH_Randomstr();
+/**
  将对象转化为Json字符串
 
  @param object 对象
@@ -200,49 +206,9 @@ CGFloat PH_CellHeightForAutoLayout(UITableViewCell *cell, id info);
 #pragma mark -- 可以写扩展的参数
 
 
-PH_ShareInstanceHeader(PHTools);
 
-NSDictionary *PH_BaseParams(NSDictionary *sender);
 
-NSDictionary *PH_UploadParams(NSDictionary *sender);
 
-/**
- 处理网络请求下来的字典
- 
- @param sender 字典数据
- @return 处理过后的字典
- */
-NSDictionary *PH_HandleResponse(NSDictionary *sender);
-
-/**
- 网络请求的基本参数
- 
- @param sender 请求之前的参数
- @return 添加基本参数以后的
- */
-+ (NSDictionary *)PH_BaseParams:(NSDictionary *)sender;
-
-/**
- 网络请求的上传处理
- 
- @param sender 处理前的字典
- @return 处理后的字典
- */
-+ (NSDictionary *)PH_UploadParams:(NSDictionary *)sender;
-/**
- 处理网络请求下来的字典
- 
- @param sender 字典数据
- @return 处理过后的字典
- */
-+ (NSDictionary *)PH_HandleResponse:(NSDictionary *)sender;
-
-/**
- 载入配置文件
-
- @param configName 配置文件的名称
- */
-+ (void)PH_SystemConfig:(NSString *)configName;
 
 
 @end

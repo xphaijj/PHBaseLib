@@ -37,6 +37,14 @@
 }
 
 PH_ShareInstanceHeader(PHKeyConfig);
+
+/**
+ 载入配置文件
+ 
+ @param configName 配置文件的名称
+ */
++ (void)PH_SystemConfig:(NSString *)configName;
+
 /**
  外界传入的数据 集合
  */
