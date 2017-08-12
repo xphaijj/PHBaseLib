@@ -7,13 +7,13 @@
 //
 
 #import "PHAppDelegate.h"
-#import <PHBaseLib/PHTools.h>
+#import <PHBaseLib/PHSystemModel.h>
 
 @implementation PHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [PHTools PH_SystemConfig:@"PHConfig.plist"];
+    [PHKeyConfig PH_SystemConfig:@"PHConfig.plist"];
     return YES;
 }
 

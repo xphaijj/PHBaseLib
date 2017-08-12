@@ -17,5 +17,13 @@
 	<string>jpushkey</string>
 	<key>jpush_secret</key>
 	<string></string>
+	<key>umeng_key</key>
+	<string></string>
+	<key>wechat_key</key>
+	<string></string>
+	<key>wechat_secret</key>
+	<string></string>
+	<key>wechat_url</key>
+	<string></string>
 </dict>
 </plist>

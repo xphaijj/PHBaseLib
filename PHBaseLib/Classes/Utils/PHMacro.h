@@ -15,8 +15,6 @@
 #import "PHServiceMarco.h"      //服务的宏定义
 #import "PHColorMarco.h"        //颜色的宏定义
 #import "PHFontMarco.h"         //字体的宏定义
-#import "PHURLMarco.h"          //URL的宏定义
-#import "PHKeyMarco.h"          //三方key的宏定义
 #import "PHNotificationMarco.h" //通知宏定义
 #import "PHKeyChainHelper.h"
 

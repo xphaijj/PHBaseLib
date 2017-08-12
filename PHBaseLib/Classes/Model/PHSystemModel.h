@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "NSDictionary+Safe.h"
 #import "PHModel.h"
-
+#import "PHMacro.h"
 
 
 
@@ -49,12 +49,21 @@ PH_ShareInstanceHeader(PHKeyConfig);
  外界传入的数据 集合
  */
 @property (readwrite, nonatomic, strong) NSDictionary *systemConfig;
-
+#pragma mark - 配置相关
+/**
+ 主机域名
+ */
+@property (readwrite, nonatomic, strong) NSString *host_name;
+/**
+ 基础路径
+ */
+@property (readwrite, nonatomic, strong) NSString *base_url;
 /**
  上传服务器数据的扩展
  */
 @property (readwrite, nonatomic, strong) NSMutableDictionary *request_extras;
 
+#pragma mark - key
 /**
  百度地图
  */
@@ -68,13 +77,23 @@ PH_ShareInstanceHeader(PHKeyConfig);
  */
 @property (readwrite, nonatomic, strong) NSString *jpush_secret;
 /**
- 主机域名
+ 友盟key
  */
-@property (readwrite, nonatomic, strong) NSString *host_name;
+@property (readwrite, nonatomic, strong) NSString *umeng_key;
 /**
- 基础路径
+ 微信Key
  */
-@property (readwrite, nonatomic, strong) NSString *base_url;
+@property (readwrite, nonatomic, strong) NSString *wechat_key;
+/**
+ 微信Secret
+ */
+@property (readwrite, nonatomic, strong) NSString *wechat_secret;
+/**
+ 微信回调URL
+ */
+@property (readwrite, nonatomic, strong) NSString *wechat_url;
+
+
 
 
 @end
