@@ -88,8 +88,15 @@ BOOL PH_CheckEmployeeNumber(NSString *sender) {
 
 #pragma mark -- 正则匹配URL
 BOOL PH_CheckURL(NSString *sender) {
-    NSString *pattern = @"^[0-9A-Za-z]{1,50}";
+    NSString *pattern = @"(^((https|http|ftp|rtsp|mms)?)://(w{3}\\.)?)?\\w+\\.\\w+(\\.[a-zA-Z]+)*(:\\d{1,5})?(/\\w*)*(\\??(.+=.*)?(&.+=.*)?)?";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+    return [pred evaluateWithObject:sender];
+}
+
+#pragma mark -- 正则匹配 localPath
+BOOL PH_CheckLocalPath(NSString *sender) {
+    NSString *pattern = @"/var/mobile/Applications/";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF BEGINSWITH %@", pattern];
     return [pred evaluateWithObject:sender];
 }
 

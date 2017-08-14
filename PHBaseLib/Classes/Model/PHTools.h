@@ -84,6 +84,14 @@ BOOL PH_CheckEmployeeNumber(NSString *sender);
 BOOL PH_CheckURL(NSString *sender);
 
 /**
+ 正则匹配 localPath
+ 
+ @param sender 待验证的URL
+ @return URL的有效性
+ */
+BOOL PH_CheckLocalPath(NSString *sender);
+
+/**
  16进制颜色值转化为颜色 #FF555511
 
  @param sender 待转化的字符串
