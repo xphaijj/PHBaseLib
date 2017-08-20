@@ -53,7 +53,7 @@ typedef void(^PHButtonBlock)(UIButton *response);
  @param indexPath indexpath
  @param response 数据
  */
-typedef void(^PHCellBlock)(NSIndexPath *indexPath, id response);
+typedef void(^PHCellBlock)(UITableViewCell *cell, NSIndexPath *indexPath, id response);
 
 /**
  Cell上面添加事件的回调
@@ -61,7 +61,7 @@ typedef void(^PHCellBlock)(NSIndexPath *indexPath, id response);
  @param indexPath indexPath
  @param response 回调参数
  */
-typedef void(^PHCellActionBlock)(NSIndexPath *indexPath,  id response);
+typedef void(^PHCellActionBlock)(UITableViewCell *cell, NSIndexPath *indexPath, id response);
 
 /**
  搜索框的搜索回调
