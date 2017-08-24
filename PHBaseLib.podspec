@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PHBaseLib'
-  s.version          = '0.1.10'
+  s.version          = '0.1.11'
   s.summary          = '自定义基础类库'
 
   s.description      = <<-DESC

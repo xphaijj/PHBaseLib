@@ -88,7 +88,7 @@ BOOL PH_CheckEmployeeNumber(NSString *sender) {
 
 #pragma mark -- 正则匹配URL
 BOOL PH_CheckURL(NSString *sender) {
-    NSString *pattern = @"(^((https|http|ftp|rtsp|mms)?)://(w{3}\\.)?)?\\w+\\.\\w+(\\.[a-zA-Z]+)*(:\\d{1,5})?(/\\w*)*(\\??(.+=.*)?(&.+=.*)?)?";
+    NSString *pattern = @"http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
     return [pred evaluateWithObject:sender];
 }
