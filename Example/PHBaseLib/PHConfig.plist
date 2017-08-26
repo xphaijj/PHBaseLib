@@ -25,5 +25,9 @@
 	<string></string>
 	<key>wechat_url</key>
 	<string></string>
+	<key>im_key</key>
+	<string></string>
+	<key>im_secret</key>
+	<string></string>
 </dict>
 </plist>

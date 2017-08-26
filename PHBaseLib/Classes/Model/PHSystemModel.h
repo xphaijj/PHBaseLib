@@ -92,8 +92,14 @@ PH_ShareInstanceHeader(PHKeyConfig);
  微信回调URL
  */
 @property (readwrite, nonatomic, strong) NSString *wechat_url;
-
-
+/**
+ 即时通讯的key
+ */
+@property (readwrite, nonatomic, strong) NSString *im_key;
+/**
+ 即时通讯的SECRET
+ */
+@property (readwrite, nonatomic, strong) NSString *im_secret;
 
 
 @end
